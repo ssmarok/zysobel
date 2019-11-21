@@ -21,6 +21,7 @@
 
 
 module load_row_fsm(
+    input wire clk
 
     );
 endmodule

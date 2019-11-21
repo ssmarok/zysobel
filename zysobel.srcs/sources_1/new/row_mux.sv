@@ -13,7 +13,7 @@ module row_mux(
     );
        
     always_comb begin
-        case (sel) 
+        unique case (sel) 
             2'b00 : q = in_a;
             2'b01 : q = in_b;
             2'b10 : q = in_c;

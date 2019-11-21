@@ -21,6 +21,7 @@
 
 
 module process_row_fsm(
+    input wire clk
 
     );
 endmodule

@@ -3,19 +3,9 @@
 `default_nettype none
 
 module sobel_est(
-    input wire [7:0][3:0] mat,
+    input wire [7:0] mat [3:0],
     output wire[7:0] sobel_pixel
     );
-
-    // wire[7:0] a, mat 0
-    // wire[7:0] b, mat 1
-    // wire[7:0] c, mat 2
-    // wire[7:0] d, mat 3
-    // wire[7:0] e, mat 4
-    // wire[7:0] f, mat 5
-    // wire[7:0] g, mat 6
-    // wire[7:0] h, mat 7
-    // wire[7:0] i, mat 8     
 
     reg [8:0] gx;
     reg [8:0] gy;
