@@ -16,8 +16,9 @@ module sobel_est(
         gx <= mat[7] + mat[7] + mat[6] + mat[8] - mat[1] - mat[1] - mat[0] - mat[2];
         gy <= mat[5] + mat[5] + mat[2] + mat[8] - mat[3] - mat[3] - mat[0] - mat[6];
     end
+    
     // TODO: ABS
-    // assign data_out = abs(gx) + abs(gy);
+//    assign data_out = ABS(gx) + AB(gy);
     assign sobel_pixel = gx + gy;
     
 endmodule

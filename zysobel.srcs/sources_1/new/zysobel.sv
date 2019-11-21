@@ -22,14 +22,25 @@ module zysobel(
     wire [2:0] blk_ram_we;
     wire [9:0] blk_ram_addr;
     
-    wire [7:0] blk_ram_out [2:0];
+    wire [7:0] row0_ram_out;
+    wire [7:0] row1_ram_out;
+    wire [7:0] row2_ram_out;
     
-    wire [7:0] mux_out [2:0];
+    wire [1:0] mux0_sel;
+    wire [1:0] mux1_sel;
+    wire [1:0] mux2_sel;
+            
+    wire [7:0] mux0_out;
+    wire [7:0] mux1_out;
+    wire [7:0] mux2_out;
     
     wire sr_shift;
     wire [7:0] sr_matrix [3:0];
     
     wire [7:0] sobel_pixel;
+    
+    wire [9:0] in_fifo_count;
+    wire [9:0] out_fifo_count;
     
     mem_controller controller(
         .clk(clk),
@@ -37,9 +48,7 @@ module zysobel(
         
         .in_fifo_empty(in_fifo_empty),
         .in_fifo_rd_en(in_fifo_rd_en),
-        
-        
-        
+               
         .row_mode(row_mode),
         .blk_ram_we_ctl(blk_ram_we_ctl),
         .blk_ram_addr(blk_ram_addr) ,
@@ -50,25 +59,19 @@ module zysobel(
         .out_fifo_we(out_fifo_we)
     );
         
-    row_decoder row_control(
-        .row_mode(row_mode),
-        .blk_ram_we_ctl(blk_ram_we_ctl),
-        
-        .row0_we(blk_ram_we[0]),
-        .row1_we(blk_ram_we[1]),
-        .row2_we(blk_ram_we[2])
-    );
-    
     fifo_generator_0 in_fifo(
         .clk(clk),
         .srst(rst),
         
+        .full(),
         .wr_en(0),
         .din(din),
         
         .empty(in_fifo_empty),
         .rd_en(in_fifo_rd_en),
-        .dout(f2r_bus)
+        .dout(f2r_bus),
+        
+        .data_count(in_fifo_count)
     );
 
     blk_mem_gen_0 row0_ram(
@@ -76,7 +79,7 @@ module zysobel(
         .wea(blk_ram_we[0]),
         .addra(blk_ram_addr),
         .dina(f2r_bus),
-        .douta(blk_ram_out[0])
+        .douta(row0_ram_out)
     );
         
     blk_mem_gen_0 row1_ram(
@@ -84,7 +87,7 @@ module zysobel(
         .wea(blk_ram_we[1]),
         .addra(blk_ram_addr),
         .dina(f2r_bus),
-        .douta(blk_ram_out[1])
+        .douta(row1_ram_out)
     );
     
     blk_mem_gen_0 row2_ram(
@@ -92,36 +95,54 @@ module zysobel(
         .wea(blk_ram_we[2]),
         .addra(blk_ram_addr),
         .dina(f2r_bus),
-        .douta(blk_ram_out[2])
+        .douta(row2_ram_out)
     );
-
+    
+    row_decoder row_control(
+       .row_mode(row_mode),
+       .blk_ram_we_ctl(blk_ram_we_ctl),
+       
+       .row0_we(blk_ram_we[0]),
+       .row1_we(blk_ram_we[1]),
+       .row2_we(blk_ram_we[2]),
+       
+       .mux0_sel(mux0_sel),
+       .mux1_sel(mux1_sel),
+       .mux2_sel(mux2_sel)
+   );
+       
     row_mux mux0(
-        .in_a(blk_ram_out[0]),
-        .in_b(blk_ram_out[1]),
-        .in_c(blk_ram_out[2]),
-        .q(mux_out[0])
+        .in_a(row0_ram_out),
+        .in_b(row1_ram_out),
+        .in_c(row2_ram_out),
+        .sel(mux0_sel),
+        .q(mux0_out)
     );
     
     row_mux mux1(
-        .in_a(blk_ram_out[0]),
-        .in_b(blk_ram_out[1]),
-        .in_c(blk_ram_out[2]),
-        .q(mux_out[1])
+        .in_a(row0_ram_out),
+        .in_b(row1_ram_out),
+        .in_c(row2_ram_out),
+        .sel(mux1_sel),
+        .q(mux1_out)
   );
     
     row_mux mux2(
-        .in_a(blk_ram_out[0]),
-        .in_b(blk_ram_out[1]),
-        .in_c(blk_ram_out[2]),
-        .q(mux_out[2])
+        .in_a(row0_ram_out),
+        .in_b(row1_ram_out),
+        .in_c(row2_ram_out),
+        .sel(mux2_sel),
+        .q(mux2_out)
   );
 
     shift_reg_3x3_8b sr(
         .clk(clk),
+        .shift_enable(sr_shift),
         
-        .row0_in(mux_out[0]),
-        .row1_in(mux_out[1]),
-        .row2_in(mux_out[2]),    
+        .row0_in(mux0_out),
+        .row1_in(mux1_out),
+        .row2_in(mux2_out),   
+         
         .mat_out(sr_matrix)
     );
 
@@ -139,7 +160,10 @@ module zysobel(
         .din(sobel_pixel),
         
         .rd_en(0),
-        .dout(dout)
+        .dout(dout),
+        
+        .empty(),
+        .data_count(out_fifo_count)
     );
     
 endmodule

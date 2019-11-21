@@ -10,7 +10,6 @@ module mem_controller(
     
     output reg in_fifo_rd_en,
     
-    
     output reg [1:0] row_mode,    
     output reg blk_ram_we_ctl,
     output reg [9:0] blk_ram_addr,
