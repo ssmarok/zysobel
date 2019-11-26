@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Tue Nov 26 00:17:45 2019
+# Process ID: 6336
+# Current directory: C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13404 C:\Users\Alex\Documents\00 CALPOLY\08 Fall 2019\CPE 442\SobelHW\zysobel\zysobel.xpr
+# Log file: C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/vivado.log
+# Journal file: C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.xpr}
+update_compile_order -fileset sources_1
+file mkdir C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.srcs/sim_1/new
+file mkdir C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.srcs/sim_1/new
+file mkdir C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.srcs/sim_1/new
+file mkdir C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.srcs/sim_1/new
+file mkdir C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.srcs/sim_1/new
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+file mkdir C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.srcs/sim_1/new
+file mkdir {C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.srcs/sim_1/new}
+close [ open {C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.srcs/sim_1/new/ShiftRegTestBench.sv} w ]
+add_files -fileset sim_1 {{C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.srcs/sim_1/new/ShiftRegTestBench.sv}}
+update_compile_order -fileset sim_1
