@@ -3,7 +3,7 @@
 `default_nettype none
 
 module sobel_est(
-    input wire [7:0] mat [3:0],
+    input wire [7:0] mat [8:0],
     output wire[7:0] sobel_pixel
     );
 

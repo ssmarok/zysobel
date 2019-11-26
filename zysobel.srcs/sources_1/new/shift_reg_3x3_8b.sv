@@ -11,7 +11,7 @@ module shift_reg_3x3_8b(
     input  wire [7:0] row1_in,
     input  wire [7:0] row2_in,
     
-    output wire [7:0]  mat_out [3:0]
+    output wire [7:0]  mat_out [8:0]
     );
     
     reg [7:0] a_int;

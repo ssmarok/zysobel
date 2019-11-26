@@ -35,7 +35,7 @@ module zysobel(
     wire [7:0] mux2_out;
     
     wire sr_shift;
-    wire [7:0] sr_matrix [3:0];
+    wire [7:0] sr_matrix [8:0];
     
     wire [7:0] sobel_pixel;
     
