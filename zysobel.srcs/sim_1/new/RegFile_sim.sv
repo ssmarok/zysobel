@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 11/26/2019 12:22:11 AM
-// Design Name: 
-// Module Name: ShiftRegTestBench
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module ShiftRegTestBench( );
     logic clk;
@@ -46,32 +26,37 @@ module ShiftRegTestBench( );
         //Initialize shift register
         shift_enable = 1;        
         
-        row0_in = 'h00;
-        row1_in = 'h01;
-        row2_in = 'h02;
+        row0_in = 'h01;
+        row1_in = 'h05;
+        row2_in = 'h09;
+        #10
+        
+        row0_in = 'h02;
+        row1_in = 'h06;
+        row2_in = 'h0a;
         #10
         
         row0_in = 'h03;
-        row1_in = 'h04;
-        row2_in = 'h05;
-        #10
-        
-        row0_in = 'h06;
         row1_in = 'h07;
-        row2_in = 'h08;
+        row2_in = 'h0b;
         #10
-         
         
-        row0_in = 'hFF;
-        row1_in = 'hFF;
-        row2_in = 'hFF;
+        row0_in = 'h04;
+        row1_in = 'h08;
+        row2_in = 'h0c;
+        #10
+
+        row0_in = 'hAF;
+        row1_in = 'hFA;
+        row2_in = 'hAA;
+        #10
          
         //make sure nothing happens while shift_enable is low
         shift_enable = 0;  
-        #100
+        #50
         
         shift_enable = 1;
-        #100
+        #50
         
         shift_enable = 0;                        
     end
