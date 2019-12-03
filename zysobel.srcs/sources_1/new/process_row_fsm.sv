@@ -46,7 +46,6 @@ module process_row_fsm(
                         end else begin
                             next_state <= CONVOL;
                         end
-                        col_count = col_count + 1;
                     end
                 CONVOL: begin
                         next_state <= CHECK_FIFO;
