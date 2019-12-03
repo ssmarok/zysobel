@@ -48,7 +48,8 @@ module mem_controller(
     ctl_state_t proc_frame_state;
     ctl_state_t next_state;
     
-    reg [9:0] row_count;
+    reg [9:0] row_count = 0;
+    reg [9:0] next_row = 0;
     
     reg load_row_en;
     reg load_row_done;
@@ -59,17 +60,17 @@ module mem_controller(
     assign row_mode = row_count % 3;
 
     always @(posedge clk) begin
+        row_count <= next_row;
         proc_frame_state <= next_state;
     end
 
-    // Next state logic
-    always @(posedge clk) begin
+    always_comb begin: next_state_logic
         if (rst) begin        
             next_state <= INIT;
         end else begin
             unique case (proc_frame_state) 
                 INIT: begin
-                        row_count <= 0;
+                        next_row <= 0;
                         next_state <= LOAD;
                     end
                 LOAD: begin
@@ -81,7 +82,7 @@ module mem_controller(
                     end
                 PROC_ROW: begin
                       if (proc_row_done) begin            
-                            row_count <= row_count + 1;                 
+                            next_row <= row_count + 1;                 
                             next_state <= CHECK_ROW;
                         end else begin
                             next_state <= PROC_ROW;
@@ -96,14 +97,13 @@ module mem_controller(
                     end
                 DONE:  begin
                         next_state <= INIT;
-                        row_count <= 0;
+                        next_row <= 0;
                     end
             endcase
         end
     end
 
-    // Output logic
-    always_comb begin
+    always_comb begin: output_logic
         unique case (proc_frame_state) 
             INIT: begin 
                 end
@@ -111,21 +111,28 @@ module mem_controller(
                     assert(row_count < 640);
                     
                     if (load_row_done) begin
-                        
+                        load_row_en = 0;
+                        proc_row_en = 0;
                     end else begin
                         load_row_en <= 1;
+                        proc_row_en = 0;
                     end
                 end
             PROC_ROW: begin
                     if(proc_row_done) begin
-                        
+                        load_row_en = 0;
+                        proc_row_en = 0;
                     end else begin
                         proc_row_en <= 1;
                     end
                 end
             CHECK_ROW: begin
                     if (row_count == 640) begin 
+                        load_row_en = 0;
+                        proc_row_en = 0;
                     end else begin 
+                        load_row_en = 0;
+                        proc_row_en = 0;
                     end
                 end
             DONE:  begin

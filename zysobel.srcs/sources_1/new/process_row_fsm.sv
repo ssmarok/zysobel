@@ -24,23 +24,22 @@ module process_row_fsm(
         proc_row_state <= next_state;
     end
 
-    // Next state logic  
-    always_comb begin
+    always_comb begin: next_state_logic
         if (rst) begin
            next_state = DONE;
         end else begin
-            unique case (proc_row_state) 
+            case (proc_row_state) 
                 INIT: begin
-                        next_state = SHIFT;
                         col_count = 0;
+                        next_state = SHIFT;
                     end
                 SHIFT: begin
                         if (col_count < 3) begin
-                            col_count = col_count + 1;
                             next_state = SHIFT;
                         end else begin
                             next_state = CONVOL;
                         end
+                        col_count = col_count + 1;
                     end
                 CONVOL: begin
                         next_state = CHECK_FIFO;
@@ -53,7 +52,6 @@ module process_row_fsm(
                         end
                     end 
                 WRITE_FIFO: begin
-                        col_count = col_count + 1;
                         next_state = CHECK_COL;
                     end  
                 CHECK_COL: begin
@@ -71,8 +69,8 @@ module process_row_fsm(
                         end
                     end 
                 default: begin
-                    next_state = DONE;
-                end        
+                        next_state = DONE;
+                    end        
             endcase
         end
     end
