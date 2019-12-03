@@ -9,6 +9,7 @@ module process_row_fsm(
     output reg done,
         
     output reg sr_shift,
+    output reg[9:0] blk_ram_addr, 
     
     input wire fifo_full,
     output reg fifo_we   
@@ -17,55 +18,62 @@ module process_row_fsm(
     typedef enum logic[2:0] {INIT, SHIFT, CONVOL, CHECK_FIFO, WRITE_FIFO, CHECK_COL, DONE} proc_row_state_t;
     proc_row_state_t proc_row_state, next_state;
 
-    reg [9:0] col_count;
+    reg [9:0] col_count = 0;
+    reg [9:0] next_col_count = 0;
+    
+    assign blk_ram_addr = col_count;
 
     // Advance state
     always @(posedge clk) begin: advance_state
         proc_row_state <= next_state;
+        col_count <= next_col_count;   
     end
 
     always_comb begin: next_state_logic
         if (rst) begin
-           next_state = DONE;
+           next_col_count <= 0;
+           next_state <= DONE;
         end else begin
             case (proc_row_state) 
                 INIT: begin
-                        col_count = 0;
-                        next_state = SHIFT;
+                        next_col_count <= 0;
+                        next_state <= SHIFT;
                     end
                 SHIFT: begin
                         if (col_count < 3) begin
-                            next_state = SHIFT;
+                            next_col_count <= col_count + 1;
+                            next_state <= SHIFT;
                         end else begin
-                            next_state = CONVOL;
+                            next_state <= CONVOL;
                         end
                         col_count = col_count + 1;
                     end
                 CONVOL: begin
-                        next_state = CHECK_FIFO;
+                        next_state <= CHECK_FIFO;
                     end 
                 CHECK_FIFO: begin
                         if (fifo_full) begin
-                            next_state = CHECK_FIFO;
+                            next_state <= CHECK_FIFO;
                         end else begin
-                            next_state = WRITE_FIFO;
+                            next_state <= WRITE_FIFO;
                         end
                     end 
                 WRITE_FIFO: begin
-                        next_state = CHECK_COL;
+                        next_col_count <= col_count + 1;
+                        next_state <= CHECK_COL;
                     end  
                 CHECK_COL: begin
                         if (col_count >= 640) begin
-                            next_state = DONE;
+                            next_state <= DONE;
                         end else begin
-                            next_state = SHIFT;
+                            next_state <= SHIFT;
                         end
                     end 
                 DONE: begin
                         if (enable) begin
-                           next_state = INIT; 
+                           next_state <= INIT; 
                         end else begin
-                            next_state = DONE;
+                            next_state <= DONE;
                         end
                     end 
                 default: begin

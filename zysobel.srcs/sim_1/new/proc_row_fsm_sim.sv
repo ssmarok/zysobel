@@ -27,6 +27,7 @@ module proc_row_fsm_sim( );
     logic done;
         
     logic sr_shift;
+    logic [9:0] blk_ram_addr;
     
     logic fifo_full;
     logic fifo_we;
@@ -38,6 +39,7 @@ module proc_row_fsm_sim( );
         .done(done),
         
         .sr_shift(sr_shift),
+        .blk_ram_addr(blk_ram_addr),
         
         .fifo_full(fifo_full),
         .fifo_we(fifo_we)
