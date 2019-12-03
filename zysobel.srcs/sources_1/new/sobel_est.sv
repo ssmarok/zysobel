@@ -7,14 +7,17 @@ module sobel_est(
     output wire[7:0] sobel_pixel
     );
 
-    reg [8:0] gx;
-    reg [8:0] gy;
+    int gx;
+    int gy;
     
     always_comb begin
         // gx <= h + h + g + i - b - b - a - c;
         // gy <= f + f + c + i - d - d - a - g;
-        gx <= mat[7] + mat[7] + mat[6] + mat[8] - mat[1] - mat[1] - mat[0] - mat[2];
-        gy <= mat[5] + mat[5] + mat[2] + mat[8] - mat[3] - mat[3] - mat[0] - mat[6];
+        gx = mat[7] + mat[7] + mat[6] + mat[8] - mat[1] - mat[1] - mat[0] - mat[2];
+        gy = mat[5] + mat[5] + mat[2] + mat[8] - mat[3] - mat[3] - mat[0] - mat[6];
+        
+        if (gx < 0) gx = 0 - gx;
+        if (gy < 0) gy = 0 - gy;
     end
     
     // TODO: ABS
