@@ -1,4 +1,4 @@
-webtalk_init -webtalk_dir C:/Users/sfsha/vivado/projects/ee523/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/load_row_fsm_sim_behav/webtalk/
+webtalk_init -webtalk_dir C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/load_row_fsm_sim_behav/webtalk/
 webtalk_register_client -client project
 webtalk_add_data -client project -key date_generated -value "Tue Dec  3 13:38:07 2019" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2017.4.1 (64-bit)" -context "software_version_and_target_device"
@@ -12,15 +12,15 @@ webtalk_add_data -client project -key target_family -value "not_applicable" -con
 webtalk_add_data -client project -key target_device -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key target_package -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
-webtalk_add_data -client project -key random_id -value "bcc80810-d71e-4a0b-87c6-945a6e3b5b05" -context "software_version_and_target_device"
+webtalk_add_data -client project -key random_id -value "4b4b95f5-9979-4abc-ba1c-cade4e9e7513" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "a01f3a4a4ecb4966af11405be6dbbef5" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_iteration -value "27" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Microsoft Windows 8 or later , 64-bit" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
-webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz" -context "user_environment"
-webtalk_add_data -client project -key cpu_speed -value "1992 MHz" -context "user_environment"
+webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz" -context "user_environment"
+webtalk_add_data -client project -key cpu_speed -value "2400 MHz" -context "user_environment"
 webtalk_add_data -client project -key total_processors -value "1" -context "user_environment"
-webtalk_add_data -client project -key system_ram -value "16.000 GB" -context "user_environment"
+webtalk_add_data -client project -key system_ram -value "8.000 GB" -context "user_environment"
 webtalk_register_client -client xsim
 webtalk_add_data -client xsim -key Command -value "xsim" -context "xsim\\command_line_options"
 webtalk_add_data -client xsim -key trace_waveform -value "true" -context "xsim\\usage"
