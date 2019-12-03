@@ -1,0 +1,49 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Tue Nov 26 01:58:49 2019
+# Process ID: 21524
+# Current directory: C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent17496 C:\Users\Alex\Documents\00 CALPOLY\08 Fall 2019\CPE 442\SobelHW\zysobel\zysobel.xpr
+# Log file: C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/vivado.log
+# Journal file: C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.xpr}
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open {C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.srcs/sim_1/new/RegFile_sim.sv} w ]
+add_files -fileset sim_1 {{C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.srcs/sim_1/new/RegFile_sim.sv}}
+update_compile_order -fileset sim_1
+launch_simulation
+source sobel_est_sim.tcl
+close_sim
+launch_simulation
+source sobel_est_sim.tcl
+close_sim
+set_property top ShiftRegTestBench [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+update_compile_order -fileset sim_1
+launch_simulation
+source ShiftRegTestBench.tcl
+close_sim
+launch_simulation
+source ShiftRegTestBench.tcl
+add_force {/ShiftRegTestBench/clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+close_sim
+launch_simulation
+source ShiftRegTestBench.tcl
+add_force {/ShiftRegTestBench/clk} -radix bin {0 0ns} {1 2500ps} -repeat_every 5000ps
+run all
+run 300 ns
+close_sim
+launch_simulation
+source ShiftRegTestBench.tcl
+restart
+add_force {/ShiftRegTestBench/clk} -radix bin {0 0ns} {1 2500ps} -repeat_every 5000ps
+run 300 ns
+restart
+add_force {/ShiftRegTestBench/clk} -radix bin {0 0ns} {1 5000ps} -repeat_every 10000ps
+run 300 ns
+close_sim
