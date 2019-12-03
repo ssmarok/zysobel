@@ -18,39 +18,41 @@ module load_row_fsm(
     typedef enum logic[2:0] {INIT, CHECK_FIFO, CONSUME, CHECK_COL, DONE} load_row_state_t;
     load_row_state_t load_row_state, next_state;
 
-    reg [8:0] col_count;
+    reg [9:0] col_count;
 
     assign blk_ram_addr = col_count;
 
     // Advance state
-    always @(posedge clk) begin
+    always @(posedge clk) begin: advance_state
         load_row_state <= next_state;
     end
 
     // Next state logic
-    always @(posedge clk) begin
+    always_comb begin: next_state_logic
         if (rst) begin
-           next_state = INIT;
+           next_state = DONE;
         end else begin
             case (load_row_state) 
                 INIT: begin
+                        col_count = 0;
                         next_state = CHECK_FIFO;
                     end
                 CHECK_FIFO: begin
                         if (fifo_empty) begin
-                            next_state = CONSUME;
-                        end else begin
                             next_state = CHECK_FIFO;
+                        end else begin
+                            next_state = CONSUME;
                         end
                     end 
                 CONSUME: begin
-                        col_count = col_count + 1;
+                        
                         next_state = CHECK_COL;
                     end  
                 CHECK_COL: begin
-                        if (col_count >= 640) begin
+                        if (col_count >= 639) begin
                             next_state = DONE;
                         end else begin
+                            col_count = col_count + 1;
                             next_state = CHECK_FIFO;
                         end
                     end 
@@ -69,7 +71,7 @@ module load_row_fsm(
     end
 
     // Output logic
-    always_comb begin: OutputLogic
+    always_comb begin: output_logic
         case (load_row_state)
             INIT: begin
                     fifo_rd_en <= 0;
@@ -96,6 +98,11 @@ module load_row_fsm(
                     blk_ram_we <= 0;
                     done <= 1;
                 end 
+            default: begin
+                    fifo_rd_en <= 0;
+                    blk_ram_we <= 0;
+                    done <= 0;
+                end
         endcase
     end
 endmodule

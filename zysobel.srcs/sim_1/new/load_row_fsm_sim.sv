@@ -33,12 +33,12 @@ module load_row_fsm_sim(
         enable = 0;
         fifo_empty = 0;
         rst = 1;
-        #10
+        #20
         rst = 0;
         
-        #10
+        #20
         enable = 1;
-        #10
+        #20
         enable = 0;
         
         
