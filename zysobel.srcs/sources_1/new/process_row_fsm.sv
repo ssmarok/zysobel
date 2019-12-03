@@ -17,21 +17,22 @@ module process_row_fsm(
     typedef enum logic[2:0] {INIT, SHIFT, CONVOL, CHECK_FIFO, WRITE_FIFO, CHECK_COL, DONE} proc_row_state_t;
     proc_row_state_t proc_row_state, next_state;
 
-    reg [8:0] col_count;
+    reg [9:0] col_count;
 
     // Advance state
-    always @(posedge clk) begin
+    always @(posedge clk) begin: advance_state
         proc_row_state <= next_state;
     end
 
-    // Next state logic
-    always @(posedge clk) begin
+    // Next state logic  
+    always_comb begin
         if (rst) begin
-           next_state = INIT;
+           next_state = DONE;
         end else begin
             unique case (proc_row_state) 
                 INIT: begin
                         next_state = SHIFT;
+                        col_count = 0;
                     end
                 SHIFT: begin
                         if (col_count < 3) begin
@@ -46,9 +47,9 @@ module process_row_fsm(
                     end 
                 CHECK_FIFO: begin
                         if (fifo_full) begin
-                            next_state = WRITE_FIFO;
-                        end else begin
                             next_state = CHECK_FIFO;
+                        end else begin
+                            next_state = WRITE_FIFO;
                         end
                     end 
                 WRITE_FIFO: begin
@@ -69,9 +70,13 @@ module process_row_fsm(
                             next_state = DONE;
                         end
                     end 
+                default: begin
+                    next_state = DONE;
+                end        
             endcase
         end
     end
+    
 
     always_comb begin
         unique case (proc_row_state)
@@ -110,6 +115,11 @@ module process_row_fsm(
                     fifo_we <= 0;
                     done <= 1;
                 end 
+            default: begin
+                    sr_shift = 0;
+                    fifo_we <= 0;
+                    done <= 0;
+            end    
         endcase
     end
 endmodule
