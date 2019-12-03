@@ -9,6 +9,7 @@ module process_row_fsm(
     output reg done,
         
     output reg sr_shift,
+    output reg[9:0] blk_ram_addr, 
     
     input wire fifo_full,
     output reg fifo_we   
@@ -19,6 +20,8 @@ module process_row_fsm(
 
     reg [9:0] col_count = 0;
     reg [9:0] next_col_count = 0;
+    
+    assign blk_ram_addr = col_count;
 
     // Advance state
     always @(posedge clk) begin: advance_state
