@@ -1,8 +1,8 @@
 webtalk_init -webtalk_dir C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/load_row_fsm_sim_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Tue Dec  3 13:38:07 2019" -context "software_version_and_target_device"
-webtalk_add_data -client project -key product_version -value "XSIM v2017.4.1 (64-bit)" -context "software_version_and_target_device"
-webtalk_add_data -client project -key build_version -value "2117270" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Tue Dec  3 14:09:20 2019" -context "software_version_and_target_device"
+webtalk_add_data -client project -key product_version -value "XSIM v2017.4 (64-bit)" -context "software_version_and_target_device"
+webtalk_add_data -client project -key build_version -value "2086221" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
 webtalk_add_data -client project -key registration_id -value "" -context "software_version_and_target_device"
 webtalk_add_data -client project -key tool_flow -value "xsim_vivado" -context "software_version_and_target_device"
@@ -14,7 +14,7 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "4b4b95f5-9979-4abc-ba1c-cade4e9e7513" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "a01f3a4a4ecb4966af11405be6dbbef5" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "27" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "7" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Microsoft Windows 8 or later , 64-bit" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz" -context "user_environment"
@@ -24,9 +24,9 @@ webtalk_add_data -client project -key system_ram -value "8.000 GB" -context "use
 webtalk_register_client -client xsim
 webtalk_add_data -client xsim -key Command -value "xsim" -context "xsim\\command_line_options"
 webtalk_add_data -client xsim -key trace_waveform -value "true" -context "xsim\\usage"
-webtalk_add_data -client xsim -key runtime -value "40 us" -context "xsim\\usage"
+webtalk_add_data -client xsim -key runtime -value "4565 ns" -context "xsim\\usage"
 webtalk_add_data -client xsim -key iteration -value "1" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Time -value "0.01_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Memory -value "7508_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 3715241161 -regid "" -xml C:/Users/sfsha/vivado/projects/ee523/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/load_row_fsm_sim_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/sfsha/vivado/projects/ee523/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/load_row_fsm_sim_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/sfsha/vivado/projects/ee523/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/load_row_fsm_sim_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Simulation_Time -value "0.03_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Simulation_Memory -value "7132_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 3115006331 -regid "" -xml C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/load_row_fsm_sim_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/load_row_fsm_sim_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/load_row_fsm_sim_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate
