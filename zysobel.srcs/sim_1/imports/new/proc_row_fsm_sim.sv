@@ -1,7 +1,8 @@
 `timescale 1ns / 1ps
 
 module proc_row_fsm_sim( );
-    logic clk;
+    
+    logic clk;    
     logic rst;
     logic enable;
     logic done;
@@ -10,6 +11,8 @@ module proc_row_fsm_sim( );
     
     logic fifo_full;
     logic fifo_we;
+    
+    test_clk metronome(clk);
 
     process_row_fsm fsm(
         .clk(clk),
@@ -28,7 +31,7 @@ module proc_row_fsm_sim( );
         rst = 1;
         enable = 0;
         fifo_full = 0;
-
+        
         #20
         rst = 0;
         #20
@@ -36,5 +39,11 @@ module proc_row_fsm_sim( );
         #20
         enable = 0;
 
+        //Test fifo sensing
+        #190
+        fifo_full = 1;
+        #100
+        fifo_full = 0;
+        
     end
 endmodule

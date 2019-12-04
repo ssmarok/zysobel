@@ -2,10 +2,9 @@
 
 `default_nettype none
 
-module load_row_fsm_sim(
-    input wire clk
-    );
-    
+module load_row_fsm_sim();
+
+    logic clk;
     logic rst;
     logic enable;
     logic done;
@@ -16,6 +15,8 @@ module load_row_fsm_sim(
     logic[9:0] blk_ram_addr;
     logic blk_ram_we;
     
+    test_clk metronome(clk);
+        
     load_row_fsm row_loader( 
         .clk(clk),
         .rst(rst),
@@ -40,6 +41,12 @@ module load_row_fsm_sim(
         enable = 1;
         #20
         enable = 0;
+        
+        //Test fifo sensing
+        #190
+        fifo_empty = 1;
+        #100
+        fifo_empty = 0;
         
         
     end

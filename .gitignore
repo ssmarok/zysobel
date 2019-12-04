@@ -74,7 +74,17 @@
 #*.dcp (checkpoint files: better be ignored!)
 #!*.dcp
 
+# End of https://www.gitignore.io/api/vivado,xilinxvivado
+
 *.cache
 *.runs
 
-# End of https://www.gitignore.io/api/vivado,xilinxvivado
+# shoot from the hip
+*.jou
+*.wcfg
+*.xml
+*.tcl
+*.c
+*.mem
+*.pb
+

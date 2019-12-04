@@ -3,89 +3,53 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="proc_row_fsm_sim_behav.wdb" id="1">
+      <db_ref path="load_row_fsm_sim_func_impl.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="proc_row_fsm_sim" />
+            <top_module name="load_row_fsm_sim" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="39764000000fs"></ZoomStartTime>
-      <ZoomEndTime time="39916876549fs"></ZoomEndTime>
-      <Cursor1Time time="40000000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="263457549fs"></ZoomEndTime>
+      <Cursor1Time time="0fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="144"></NameColumnWidth>
-      <ValueColumnWidth column_width="95"></ValueColumnWidth>
+      <ValueColumnWidth column_width="87"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="17" />
-   <wvobject fp_name="/proc_row_fsm_sim/clk" type="logic">
+   <WVObjectSize size="8" />
+   <wvobject fp_name="/load_row_fsm_sim/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/rst" type="logic">
+   <wvobject fp_name="/load_row_fsm_sim/rst" type="logic">
       <obj_property name="ElementShortName">rst</obj_property>
       <obj_property name="ObjectShortName">rst</obj_property>
    </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/enable" type="logic">
+   <wvobject fp_name="/load_row_fsm_sim/enable" type="logic">
       <obj_property name="ElementShortName">enable</obj_property>
       <obj_property name="ObjectShortName">enable</obj_property>
    </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/done" type="logic">
+   <wvobject fp_name="/load_row_fsm_sim/done" type="logic">
       <obj_property name="ElementShortName">done</obj_property>
       <obj_property name="ObjectShortName">done</obj_property>
    </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/sr_shift" type="logic">
-      <obj_property name="ElementShortName">sr_shift</obj_property>
-      <obj_property name="ObjectShortName">sr_shift</obj_property>
+   <wvobject fp_name="/load_row_fsm_sim/fifo_empty" type="logic">
+      <obj_property name="ElementShortName">fifo_empty</obj_property>
+      <obj_property name="ObjectShortName">fifo_empty</obj_property>
    </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/fifo_full" type="logic">
-      <obj_property name="ElementShortName">fifo_full</obj_property>
-      <obj_property name="ObjectShortName">fifo_full</obj_property>
+   <wvobject fp_name="/load_row_fsm_sim/fifo_rd_en" type="logic">
+      <obj_property name="ElementShortName">fifo_rd_en</obj_property>
+      <obj_property name="ObjectShortName">fifo_rd_en</obj_property>
    </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/fifo_we" type="logic">
-      <obj_property name="ElementShortName">fifo_we</obj_property>
-      <obj_property name="ObjectShortName">fifo_we</obj_property>
+   <wvobject fp_name="/load_row_fsm_sim/blk_ram_addr" type="array">
+      <obj_property name="ElementShortName">blk_ram_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">blk_ram_addr[9:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/fsm/clk" type="logic">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/fsm/rst" type="logic">
-      <obj_property name="ElementShortName">rst</obj_property>
-      <obj_property name="ObjectShortName">rst</obj_property>
-   </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/fsm/enable" type="logic">
-      <obj_property name="ElementShortName">enable</obj_property>
-      <obj_property name="ObjectShortName">enable</obj_property>
-   </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/fsm/done" type="logic">
-      <obj_property name="ElementShortName">done</obj_property>
-      <obj_property name="ObjectShortName">done</obj_property>
-   </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/fsm/sr_shift" type="logic">
-      <obj_property name="ElementShortName">sr_shift</obj_property>
-      <obj_property name="ObjectShortName">sr_shift</obj_property>
-   </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/fsm/fifo_full" type="logic">
-      <obj_property name="ElementShortName">fifo_full</obj_property>
-      <obj_property name="ObjectShortName">fifo_full</obj_property>
-   </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/fsm/fifo_we" type="logic">
-      <obj_property name="ElementShortName">fifo_we</obj_property>
-      <obj_property name="ObjectShortName">fifo_we</obj_property>
-   </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/fsm/proc_row_state" type="array">
-      <obj_property name="ElementShortName">proc_row_state[2:0]</obj_property>
-      <obj_property name="ObjectShortName">proc_row_state[2:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/fsm/next_state" type="array">
-      <obj_property name="ElementShortName">next_state[2:0]</obj_property>
-      <obj_property name="ObjectShortName">next_state[2:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/proc_row_fsm_sim/fsm/col_count" type="array">
-      <obj_property name="ElementShortName">col_count[9:0]</obj_property>
-      <obj_property name="ObjectShortName">col_count[9:0]</obj_property>
+   <wvobject fp_name="/load_row_fsm_sim/blk_ram_we" type="logic">
+      <obj_property name="ElementShortName">blk_ram_we</obj_property>
+      <obj_property name="ObjectShortName">blk_ram_we</obj_property>
    </wvobject>
 </wave_config>
