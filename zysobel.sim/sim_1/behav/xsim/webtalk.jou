@@ -1,24 +1,12 @@
 #-----------------------------------------------------------
-<<<<<<< HEAD
 # Webtalk v2017.4.1 (64-bit)
 # SW Build 2117270 on Tue Jan 30 15:32:00 MST 2018
 # IP Build 2095745 on Tue Jan 30 17:13:15 MST 2018
-# Start of session at: Tue Dec  3 13:52:41 2019
-# Process ID: 4696
+# Start of session at: Thu Dec  5 13:32:20 2019
+# Process ID: 4020
 # Current directory: C:/Users/sfsha/vivado/projects/ee523/zysobel/zysobel.sim/sim_1/behav/xsim
-# Command line: wbtcv.exe -mode batch -source C:/Users/sfsha/vivado/projects/ee523/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/proc_row_fsm_sim_behav/webtalk/xsim_webtalk.tcl -notrace
+# Command line: wbtcv.exe -mode batch -source C:/Users/sfsha/vivado/projects/ee523/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/controller_sim_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: C:/Users/sfsha/vivado/projects/ee523/zysobel/zysobel.sim/sim_1/behav/xsim/webtalk.log
 # Journal file: C:/Users/sfsha/vivado/projects/ee523/zysobel/zysobel.sim/sim_1/behav/xsim\webtalk.jou
-=======
-# Webtalk v2017.4 (64-bit)
-# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
-# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Tue Dec  3 13:56:42 2019
-# Process ID: 10448
-# Current directory: C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.sim/sim_1/behav/xsim
-# Command line: wbtcv.exe -mode batch -source C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/proc_row_fsm_sim_behav/webtalk/xsim_webtalk.tcl -notrace
-# Log file: C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.sim/sim_1/behav/xsim/webtalk.log
-# Journal file: C:/Users/Alex/Documents/00 CALPOLY/08 Fall 2019/CPE 442/SobelHW/zysobel/zysobel.sim/sim_1/behav/xsim\webtalk.jou
->>>>>>> 584fb392e995285ec850a7d6c7268691a49eadb2
 #-----------------------------------------------------------
-source C:/Users/sfsha/vivado/projects/ee523/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/proc_row_fsm_sim_behav/webtalk/xsim_webtalk.tcl -notrace
+source C:/Users/sfsha/vivado/projects/ee523/zysobel/zysobel.sim/sim_1/behav/xsim/xsim.dir/controller_sim_behav/webtalk/xsim_webtalk.tcl -notrace

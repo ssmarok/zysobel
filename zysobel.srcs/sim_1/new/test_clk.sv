@@ -6,10 +6,10 @@ module test_clk(
     
     initial begin
         clk = 1;
-        #20
+        #1
         
         while(1) begin
-            #20
+            #1
             clk = !clk;
         end
     end

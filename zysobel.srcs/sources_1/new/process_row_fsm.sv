@@ -15,68 +15,79 @@ module process_row_fsm(
     output reg fifo_we   
     );
         
-    typedef enum logic[2:0] {INIT, SHIFT, CONVOL, CHECK_FIFO, WRITE_FIFO, CHECK_COL, DONE} proc_row_state_t;
+    typedef enum logic[2:0] {INIT, SHIFT, CONVOL, CHECK_FIFO, WRITE_FIFO, CHECK_COL, DONE, READY} proc_row_state_t;
     proc_row_state_t proc_row_state, next_state;
 
     reg [9:0] col_count = 0;
-    reg [9:0] next_col_count = 0;
+    reg [9:0] next_col = 0;
     
     assign blk_ram_addr = col_count;
 
     // Advance state
     always @(posedge clk) begin: advance_state
         proc_row_state <= next_state;
-        col_count <= next_col_count;   
+        col_count <= next_col;   
     end
 
     always_comb begin: next_state_logic
         if (rst) begin
-           next_col_count <= 0;
-           next_state <= DONE;
+           next_col = 0;
+           next_state = READY;
         end else begin
-            case (proc_row_state) 
+            unique case (proc_row_state) 
                 INIT: begin
-                        next_col_count <= 0;
-                        next_state <= SHIFT;
+                        next_col = 0;
+                        next_state = SHIFT;
                     end
                 SHIFT: begin
                         if (col_count < 3) begin
-                            next_col_count <= col_count + 1;
-                            next_state <= SHIFT;
+                            next_col = col_count + 1;
+                            next_state = SHIFT;
                         end else begin
-                            next_state <= CONVOL;
+                            next_col = col_count;
+                            next_state = CONVOL;
                         end
                     end
                 CONVOL: begin
-                        next_state <= CHECK_FIFO;
+                        next_col = col_count;
+                        next_state = CHECK_FIFO;
                     end 
                 CHECK_FIFO: begin
+                        next_col = col_count;
                         if (fifo_full) begin
-                            next_state <= CHECK_FIFO;
+                            next_state = CHECK_FIFO;
                         end else begin
-                            next_state <= WRITE_FIFO;
+                            next_state = WRITE_FIFO;
                         end
                     end 
                 WRITE_FIFO: begin
-                        next_col_count <= col_count + 1;
-                        next_state <= CHECK_COL;
+                        next_col = col_count;
+                        next_state = CHECK_COL;
                     end  
                 CHECK_COL: begin
-                        if (col_count >= 640) begin
-                            next_state <= DONE;
+                        if (col_count > 639) begin
+                            next_col = col_count;
+                            next_state = DONE;
                         end else begin
-                            next_state <= SHIFT;
+                            next_col = col_count + 1;
+                            next_state = SHIFT;
                         end
                     end 
                 DONE: begin
+                        next_col = 0;
+                        next_state = READY;
+                    end
+                READY: begin
+                        next_col = 0;
                         if (enable) begin
-                           next_state <= INIT; 
+                           next_state = INIT; 
                         end else begin
-                            next_state <= DONE;
+                            next_state = READY;
                         end
                     end 
                 default: begin
-                        next_state = DONE;
+                        next_col = col_count;
+                        next_state = READY;
                     end        
             endcase
         end
@@ -86,44 +97,49 @@ module process_row_fsm(
     always_comb begin
         unique case (proc_row_state)
             INIT: begin
-                    sr_shift <= 0;
-                    fifo_we <= 0;
-                    done <= 0;
+                    sr_shift = 0;
+                    fifo_we = 0;
+                    done = 0;
                 end
             SHIFT: begin
                     sr_shift = 1;
-                    fifo_we <= 0;
-                    done <= 0;
+                    fifo_we = 0;
+                    done = 0;
                 end
             CONVOL: begin
                     sr_shift = 0;
-                    fifo_we <= 0;
-                    done <= 0;
+                    fifo_we = 0;
+                    done = 0;
                 end 
             CHECK_FIFO: begin
                     sr_shift = 0;
-                    fifo_we <= 0;
-                    done <= 0;
+                    fifo_we = 0;
+                    done = 0;
                 end 
             WRITE_FIFO: begin
                     sr_shift = 0;
-                    fifo_we <= 1;
-                    done <= 0;
+                    fifo_we = 1;
+                    done = 0;
                 end  
             CHECK_COL: begin                    
                     sr_shift = 0;
-                    fifo_we <= 0;
-                    done <= 0;
+                    fifo_we = 0;
+                    done = 0;
                 end 
-            DONE: begin                    
+            DONE: begin
                     sr_shift = 0;
-                    fifo_we <= 0;
-                    done <= 1;
+                    fifo_we = 0;
+                    done = 1; 
+                end
+            READY: begin                    
+                    sr_shift = 0;
+                    fifo_we = 0;
+                    done = 0;
                 end 
             default: begin
                     sr_shift = 0;
-                    fifo_we <= 0;
-                    done <= 0;
+                    fifo_we = 0;
+                    done = 0;
             end    
         endcase
     end

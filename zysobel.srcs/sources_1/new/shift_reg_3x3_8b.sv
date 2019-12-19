@@ -11,7 +11,7 @@ module shift_reg_3x3_8b(
     input  wire [7:0] row1_in,
     input  wire [7:0] row2_in,
     
-    output wire [7:0]  mat_out [8:0]
+    output reg [7:0]  mat_out [8:0]
     );
     
     reg [7:0] a_int;
@@ -25,18 +25,18 @@ module shift_reg_3x3_8b(
     reg [7:0] i_int;
     
     always_ff @ (posedge clk) begin
-        if(shift_enable) begin        
-            a_int <= b_int;
-            b_int <= c_int;
-            c_int <= row0_in;
+        if (shift_enable) begin        
+            a_int = b_int;
+            b_int = c_int;
+            c_int = row0_in;
             
-            d_int <= e_int;
-            e_int <= f_int;
-            f_int <= row1_in;
+            d_int = e_int;
+            e_int = f_int;
+            f_int = row1_in;
             
-            g_int <= h_int;
-            h_int <= i_int;
-            i_int <= row2_in;            
+            g_int = h_int;
+            h_int = i_int;
+            i_int = row2_in;            
         end
     end
     

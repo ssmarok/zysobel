@@ -39,6 +39,8 @@ module zysobel(
     
     wire [7:0] sobel_pixel;
     
+    wire frame_done;
+    
     wire [9:0] in_fifo_count;
     wire [9:0] out_fifo_count;
     
@@ -56,7 +58,9 @@ module zysobel(
         .sr_shift(sr_shift),
         
         .out_fifo_full(out_fifo_full),
-        .out_fifo_we(out_fifo_we)
+        .out_fifo_we(out_fifo_we),
+        
+        .frame_done(frame_done)
     );
         
     fifo_generator_0 in_fifo(
